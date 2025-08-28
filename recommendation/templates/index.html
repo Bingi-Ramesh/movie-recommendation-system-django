@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telugu Movies Recommendation</title>
+    <style>
+        body { font-family: Arial; background: #f5f5f5; margin:0; padding:0; }
+        .container { width: 80%; margin:auto; text-align:center; padding:20px; }
+        h1 { color:#333; }
+        form { margin-bottom:20px; }
+        input[type="text"] { padding:10px; width:300px; border-radius:5px; border:1px solid #ccc; }
+        button { padding:10px 15px; border:none; background:#007bff; color:white; border-radius:5px; cursor:pointer; }
+        .movies { display:flex; flex-wrap:wrap; justify-content:center; }
+        .movie-card { background:white; width:200px; margin:10px; padding:10px; border-radius:10px; box-shadow:0px 2px 5px rgba(0,0,0,0.2); text-align:center; }
+        .movie-card img { width:180px; height:250px; border-radius:8px; }
+        .movie-card h3 { margin:10px 0 5px; }
+        .movie-card p { margin:3px 0; font-size:14px; }
+        .searched { font-weight:bold; margin-bottom:10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Telugu Movies Recommendation</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="query" placeholder="Search for a movie..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if searched_movie_name %}
+        <p class="searched">You searched for: {{ searched_movie_name }}</p>
+        {% endif %}
+
+        {% if results %}
+        <div class="movies">
+            {% for row in results %}
+            <div class="movie-card">
+                <img src="{{ row.PosterURL }}" alt="{{ row.Movie }}">
+                <h3>{{ row.Movie }}</h3>
+                <p><strong>Genre:</strong> {{ row.Genre }}</p>
+                <p><strong>Rating:</strong> {{ row.Rating }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No movies found. Try another search!</p>
+        {% endif %}
+    </div>
+</body>
+</html>
