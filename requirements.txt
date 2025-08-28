@@ -1,9 +1,11 @@
 asgiref==3.9.1
 Django==5.2.5
 fuzzywuzzy==0.18.0
+gunicorn==23.0.0
 joblib==1.5.2
 Levenshtein==0.27.1
 numpy==2.3.2
+packaging==25.0
 pandas==2.3.2
 python-dateutil==2.9.0.post0
 python-Levenshtein==0.27.1
@@ -15,4 +17,4 @@ six==1.17.0
 sqlparse==0.5.3
 threadpoolctl==3.6.0
 tzdata==2025.2
-gunicorn
+whitenoise==6.9.0
